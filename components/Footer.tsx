@@ -1,0 +1,1 @@
+export default function Footer(){return <footer className="site-footer"><div className="footer-inner"><span>Sacrament Meeting Planner</span><span>Meeting programs for our ward community</span></div></footer>;}

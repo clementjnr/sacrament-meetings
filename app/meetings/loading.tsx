@@ -1,0 +1,1 @@
+export default function LoadingMeetings(){return <div className="content-width page-section" aria-live="polite" aria-busy="true"><p className="muted">Loading meeting programs…</p><div className="meeting-grid">{[1,2,3].map(n=><div key={n} className="meeting-card" style={{minHeight:150,background:"#eef2f6"}}/>)}</div></div>;}

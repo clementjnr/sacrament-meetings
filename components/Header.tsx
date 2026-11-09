@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function Header(){const today=new Intl.DateTimeFormat("en",{weekday:"long",year:"numeric",month:"long",day:"numeric"}).format(new Date());return <header className="site-header"><div className="header-inner"><Link className="brand" href="/">Sacrament Meeting Planner</Link><p className="muted" style={{margin:0,fontSize:".9rem"}}>Ward program • {today}</p></div></header>;}

@@ -1,0 +1,3 @@
+import Image from "next/image";
+import Link from "next/link";
+export default function HomePage(){return <div className="content-width hero"><div><span className="eyebrow">Plan • Gather • Worship</span><h1>Sacrament meeting, thoughtfully organized.</h1><p className="muted">View upcoming and past meeting programs in one clear place. Review the agenda, see who is participating, and print a program when you need a paper copy.</p><Link className="button-link" href="/meetings">Browse meeting programs</Link></div><Image className="hero-art" src="/meeting-program.svg" alt="Illustration of a meeting program with a calendar and checklist" width={640} height={480} priority/></div>;}

@@ -1,0 +1,2 @@
+import { getMeetingById } from "@/lib/meetings-db";
+export async function GET(_request:Request,{params}:{params:Promise<{id:string}>}){const {id}=await params;const meetingId=Number(id);if(!Number.isInteger(meetingId)||meetingId<=0)return Response.json({message:"Invalid meeting ID. ID must be a positive integer."},{status:400});const meeting=getMeetingById(meetingId);if(!meeting)return Response.json({message:"Meeting not found."},{status:404});return Response.json(meeting);}
