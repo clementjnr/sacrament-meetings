@@ -12,8 +12,19 @@ async function fetchMeetings(): Promise<SacramentMeeting[]> {
     cache: "no-store",
   });
 
-  if (!response.ok) {
-    throw new Error("Unable to load meeting programs.");
+  const contentType = response.headers.get("content-type") ?? "";
+
+  if (!response.ok || !contentType.includes("application/json")) {
+    const body = await response.text();
+
+    console.error("Meetings API error:", {
+      url: `${base}/api/meetings`,
+      status: response.status,
+      contentType,
+      body: body.slice(0, 500),
+    });
+
+    throw new Error("Unable to load meeting programs from the API.");
   }
 
   return response.json() as Promise<SacramentMeeting[]>;
@@ -37,10 +48,7 @@ export default async function MeetingsPage() {
       {meetings.length > 0 ? (
         <div className="meeting-grid">
           {meetings.map((meeting) => (
-            <MeetingCard
-              key={meeting.id}
-              meeting={meeting}
-            />
+            <MeetingCard key={meeting.id} meeting={meeting} />
           ))}
         </div>
       ) : (
@@ -51,3 +59,4 @@ export default async function MeetingsPage() {
     </section>
   );
 }
+
