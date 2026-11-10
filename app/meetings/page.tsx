@@ -12,22 +12,29 @@ async function fetchMeetings(): Promise<SacramentMeeting[]> {
     cache: "no-store",
   });
 
-  const contentType = response.headers.get("content-type") ?? "";
+  const responseText = await response.text();
 
-  if (!response.ok || !contentType.includes("application/json")) {
-    const body = await response.text();
-
-    console.error("Meetings API error:", {
-      url: `${base}/api/meetings`,
-      status: response.status,
-      contentType,
-      body: body.slice(0, 500),
-    });
-
-    throw new Error("Unable to load meeting programs from the API.");
+  if (!response.ok) {
+    throw new Error(
+      `Meetings API failed: ${response.status}. ${responseText.slice(0, 200)}`
+    );
   }
 
-  return response.json() as Promise<SacramentMeeting[]>;
+  let meetings: unknown;
+
+  try {
+    meetings = JSON.parse(responseText);
+  } catch {
+    throw new Error(
+      `Meetings API returned non-JSON content. URL: ${base}/api/meetings. Response: ${responseText.slice(0, 200)}`
+    );
+  }
+
+  if (!Array.isArray(meetings)) {
+    throw new Error("Meetings API did not return an array.");
+  }
+
+  return meetings as SacramentMeeting[];
 }
 
 export default async function MeetingsPage() {

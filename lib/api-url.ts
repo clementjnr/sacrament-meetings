@@ -2,14 +2,14 @@
 import { headers } from "next/headers";
 
 export async function getApiBaseUrl(): Promise<string> {
-  // Vercel provides the hostname for the current deployment.
+  // Use the hostname of the current Vercel deployment.
   const vercelUrl = process.env.VERCEL_URL;
 
   if (vercelUrl) {
     return `https://${vercelUrl}`;
   }
 
-  // Local development fallback.
+  // Fallback for local development.
   const requestHeaders = await headers();
 
   const host =
@@ -23,3 +23,4 @@ export async function getApiBaseUrl(): Promise<string> {
 
   return `${protocol}://${host}`;
 }
+
