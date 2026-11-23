@@ -4,6 +4,7 @@ import { getMeetings, getMeetingsTotalPages } from '@/lib/meetings-db';
 import MeetingCard from '@/components/MeetingCard';
 import { MeetingSearch } from '@/components/MeetingSearch';
 import { Pagination } from '@/components/Pagination';
+import Link from 'next/link';
 
 interface MeetingsPageProps {
   searchParams: Promise<{
@@ -41,7 +42,7 @@ export default async function MeetingsPage({
         </p>
       </div>
 
-      <MeetingSearch />
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3"><MeetingSearch /><Link href="/admin/meetings/new" className="rounded-lg bg-blue-800 px-4 py-2.5 font-semibold text-white hover:bg-blue-900">Create meeting</Link></div>
 
       {meetings.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

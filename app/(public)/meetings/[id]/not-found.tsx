@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function MeetingNotFound() { return <main className="mx-auto max-w-xl px-4 py-16 text-center"><h1 className="text-2xl font-bold text-slate-900">Meeting not found</h1><p className="my-3 text-slate-600">This meeting does not exist or may have been removed.</p><Link href="/meetings" className="font-semibold text-blue-800 underline">Return to meetings</Link></main>; }

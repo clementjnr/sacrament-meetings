@@ -25,3 +25,4 @@ npm run build
 - `/api/meetings/abc` expected 400 response
 
 Sample data is in `lib/meetings-db.ts`. It is in-memory and resets when the server restarts. Replace fictional names as appropriate before publishing.
+\n\n## Week 04\nCreate, edit, and delete meeting records using Server Actions, Zod validation, accessible form feedback, and Neon PostgreSQL persistence. Admin routes are available under `/admin/meetings`.\n
